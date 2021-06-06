@@ -48,7 +48,7 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
             EM.createQuery("select m.team2, count(*) from Match m group by m.team2", Object[].class).getResultList()
                     .stream().forEach(m -> {
                         Team team = teamData.get((String) m[0]);
-                        team.setTotalMathces(team.getTotalMathces() + (long) m[1]);
+                        team.setTotalMatches(team.getTotalMatches() + (long) m[1]);
                     });
             EM.createQuery("select m.matchWinner, count(*) from Match m group by m.matchWinner", Object[].class)
                     .getResultList().stream().forEach(m -> {

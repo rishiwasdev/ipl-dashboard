@@ -14,7 +14,7 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String teamName;
-    private long totalMathces;
+    private long totalMatches;
     private long totalWins;
     @Transient
     private List<Match> matches;
@@ -22,9 +22,9 @@ public class Team {
     public Team() {
     }
 
-    public Team(String teamName, long totalMathces) {
+    public Team(String teamName, long totalMatches) {
         this.teamName = teamName;
-        this.totalMathces = totalMathces;
+        this.totalMatches = totalMatches;
     }
 
     public long getId() {
@@ -43,12 +43,12 @@ public class Team {
         this.teamName = teamName;
     }
 
-    public long getTotalMathces() {
-        return totalMathces;
+    public long getTotalMatches() {
+        return totalMatches;
     }
 
-    public void setTotalMathces(long totalMathces) {
-        this.totalMathces = totalMathces;
+    public void setTotalMatches(long totalMatches) {
+        this.totalMatches = totalMatches;
     }
 
     public long getTotalWins() {
@@ -69,6 +69,6 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Team [teamName=" + teamName + ", totalMathces=" + totalMathces + ", totalWins=" + totalWins + "]";
+        return "Team [teamName=" + teamName + ", totalMatches=" + totalMatches + ", totalWins=" + totalWins + "]";
     }
 }
