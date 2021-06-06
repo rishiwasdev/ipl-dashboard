@@ -14,19 +14,19 @@ export const MatchPage = () => {
         setMatches(data);
       }
       fetchMatches();
-    }, [] // without array [], it keeps calling API
-    );
+    }, [teamName, year] // without array [], it keeps calling API
+  );
 
-  if (!matches || matches.length === 0) {
+  if (!matches && matches.length === 0) {
     return <h1>Matches detail not found</h1>;
   }
-
+  
   return (
-    <div className="MatchPage">
-      <h1>Match Page</h1>
-      {
-        matches.map(match => <MatchDetailCard teamName={teamName} match={match}/>)
-      }
-    </div>
-  );
+      <div className="MatchPage">
+        <h1>Match Page: &emsp; {teamName}</h1>
+        {
+          matches.map(match => <MatchDetailCard teamName={teamName} match={match} />)
+        }
+      </div>
+    );
 }
