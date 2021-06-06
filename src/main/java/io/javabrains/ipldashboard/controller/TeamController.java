@@ -1,10 +1,15 @@
 package io.javabrains.ipldashboard.controller;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.javabrains.ipldashboard.model.Match;
 import io.javabrains.ipldashboard.model.Team;
 import io.javabrains.ipldashboard.repository.MatchRepository;
 import io.javabrains.ipldashboard.repository.TeamRepository;
@@ -31,7 +36,14 @@ public class TeamController {
         // domain.PageRequest(above) in Controller(Tightly-coupled) -> Bad practice.
         // Creating defualt method in Repo, AND use that as below:
 
-        team.setMatches(matchRepository.findLatestMatchesByTeam(teamName, NUM_OF_LATEST_MATCHES));
+        team.setMatches(this.matchRepository.findLatestMatchesByTeam(teamName, NUM_OF_LATEST_MATCHES));
         return team;
+    }
+
+    @GetMapping("/teams/{teamName}/matches")
+    public List<Match> getMatchesForTeam(@PathVariable String teamName, @RequestParam int year) {
+        final LocalDate START_DATE = LocalDate.of(year, 1, 1);
+        final LocalDate END_DATE = LocalDate.of(year, 12, 31);
+        return this.matchRepository.getMatchesByTeamBetweenDates(teamName, START_DATE, END_DATE);
     }
 }
