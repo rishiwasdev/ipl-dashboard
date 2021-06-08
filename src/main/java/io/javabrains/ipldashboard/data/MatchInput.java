@@ -1,7 +1,5 @@
 package io.javabrains.ipldashboard.data;
 
-import lombok.Data;
-
 // @Data
 public class MatchInput {
     private String id;

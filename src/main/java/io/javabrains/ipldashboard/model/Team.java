@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 
 @Entity
-public class Team {
+public class Team implements Comparable<Team> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -68,7 +68,38 @@ public class Team {
     }
 
     @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((teamName == null) ? 0 : teamName.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Team other = (Team) obj;
+        if (teamName == null) {
+            if (other.teamName != null)
+                return false;
+        } else if (!teamName.equals(other.teamName))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int compareTo(Team t) {
+        return this.teamName.compareTo(t.teamName);
+    }
+
+    @Override
     public String toString() {
         return "Team [teamName=" + teamName + ", totalMatches=" + totalMatches + ", totalWins=" + totalWins + "]";
     }
+
 }

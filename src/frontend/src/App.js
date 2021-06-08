@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// BrowserRouter for running/testing, HashRouter for building (Refreshing URLs works)
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
 import { HomePage } from './pages/HomePage';
 import { TeamPage } from './pages/TeamPage';
